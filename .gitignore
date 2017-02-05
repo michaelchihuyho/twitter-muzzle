@@ -1,0 +1,4 @@
+client/static
+client/test/static
+node_modules
+.DS_Store

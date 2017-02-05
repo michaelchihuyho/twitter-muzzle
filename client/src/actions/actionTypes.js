@@ -1,0 +1,2 @@
+export const GET_STUFF_START = 'GET_STUFF_START'
+export const GET_STUFF_END = 'GET_STUFF_END'
