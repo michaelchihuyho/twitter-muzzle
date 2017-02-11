@@ -14,7 +14,7 @@ class Main extends React.Component {
 export default connect(
     (state) => {
         return {
-            stuff: state.stuff.toJS()
+            stuff: state.stuff
         }
     }
 )(Main)

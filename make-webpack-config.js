@@ -3,6 +3,7 @@ var webpack = require('webpack')
   , StatsPlugin = require('stats-webpack-plugin')
   , CleanPlugin = require('clean-webpack-plugin')
   , CompressionPlugin = require('compression-webpack-plugin')
+  , serverConfig = require('./server/config')
 
 module.exports = function(options) {
     var mode = options.mode
@@ -14,6 +15,7 @@ module.exports = function(options) {
       , module = {}
       , resolve = {}
       , plugins = []
+      , devServer = {}
 
     // TARGET
     target = 'web'
@@ -23,22 +25,20 @@ module.exports = function(options) {
 
     // ENTRY
     if (mode === 'hot') {
-        throw new Error('sorry hot reloading is broken for right now')
         entry = [
-            'webpack-dev-server/client?http://localhost:3010'
+            'react-hot-loader/patch'
+          , 'webpack-dev-server/client?http://localhost:3000'
           , 'webpack/hot/only-dev-server'
-          , './client/src/app.js'
+          , './client/src/index.js'
         ]
       } else if (mode === 'dev' || mode === 'build' || mode === 'publish'){
-        entry = './client/src/app.js'
+        entry = './client/src/index.js'
     }
 
     // OUTPUT
     if (mode === 'hot') {
-        output.path = path.join(__dirname, 'client')
         output.filename = '[name].js'
-        output.chunkFilename = '[id].js'
-        output.publicPath = 'http://localhost:3010/'
+        output.publicPath = '/static/'
     } else if (mode === 'dev' || mode === 'build' || mode === 'publish') {
         output.path = path.join(__dirname, 'client/static')
         output.filename = '[name].[hash].js'
@@ -47,52 +47,38 @@ module.exports = function(options) {
     }
 
     // LOADERS
-    if (mode === 'hot') {
-        module.rules = [
-            {
-                include: /\.js$/
-              , use: ['react-hot-loader', 'babel-loader?cacheDirectory=true']
-              , exclude: /node_modules/
-            }
-          , {
-                include: /\.less$/
-              , use: ['style-loader', 'css-loader', 'less-loader']
-              , exclude: /node_modules/
-            }
-          , {
-                include: /\.woff$/
-              , use: ['url-loader?limit=100000']
-            }
-          , {
-                include: /\.(png|jpg|svg)$/
-              , use: ['url-loader?limit=8192&name=images/[name].[ext]']
-            }
-        ]
-    } else if (mode === 'dev' || mode === 'build' || mode === 'publish') {
-        module.rules = [
-            {
-                include: /\.js$/
-              , use: ['babel-loader']
-              , exclude: /node_modules/
-            }
-          , {
-                include: /\.less$/
-              , use: ['style-loader', 'css-loader', 'less-loader']
-              , exclude: /node_modules/
-            }
-          , {
-                include: /\.woff$/
-              , use: ['url-loader?limit=100000']
-            }
-          , {
-                include: /\.(png|jpg|svg)$/
-              , use: ['url-loader?limit=8192&name=images/[hash].[ext]']
-            }
-        ]
-    }
+    module.rules = [
+        {
+            include: /\.js$/
+          , use: ['babel-loader?cacheDirectory=true']
+          , exclude: /node_modules/
+        }
+      , {
+            include: /\.less$/
+          , use: ['style-loader', 'css-loader', 'less-loader']
+          , exclude: /node_modules/
+        }
+      , {
+            include: /\.woff$/
+          , use: ['url-loader?limit=100000']
+        }
+      , {
+            include: /\.(png|jpg|svg)$/
+          , use: ['url-loader?limit=8192&name=images/[name].[ext]']
+        }
+    ]
 
     // PLUGINS
-    if (mode === 'hot' || mode === 'dev') {
+    if (mode === 'hot') {
+        plugins = [
+            new webpack.HotModuleReplacementPlugin()
+          , new webpack.NamedModulesPlugin()
+          , new webpack.NoEmitOnErrorsPlugin()
+          , new webpack.DefinePlugin({
+                __DEV__: true
+            })
+        ]
+    } else if (mode === 'dev') {
         plugins = [
             new CleanPlugin(['*'], {
                 root: path.join(__dirname, 'client/static')
@@ -129,6 +115,19 @@ module.exports = function(options) {
         ]
     }
 
+    // DEV SERVER
+    devServer.host = 'localhost'
+    devServer.port = 3000
+    devServer.proxy = {
+        '/api': 'http://localhost:' + serverConfig.port
+    }
+    devServer.historyApiFallback = {
+        rewrites: [
+            {from: /./, to: '/server/views/hot-reload-index.html' }
+        ]
+    }
+    devServer.hot = true
+
     return {
         target: target
       , context: context
@@ -137,5 +136,6 @@ module.exports = function(options) {
       , module: module
       , resolve: resolve
       , plugins: plugins
+      , devServer: devServer
     }
 }

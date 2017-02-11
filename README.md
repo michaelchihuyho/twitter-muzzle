@@ -19,7 +19,7 @@ My own skeleton for building web applications using React.
 | [Webpack](https://webpack.github.io/) | Highly configurable module bundler | 2.2.1 |
 | [Less](http://lesscss.org/) | Compiled CSS styles with variables, functions, and more | |
 | [Babel](http://babeljs.io/) | Use ES6 syntax today | 6.22.1 |
-| ~~[React Hot Loader](http://gaearon.github.io/react-hot-loader/)~~ | See your components live update in the browser without losing state (currently broken here) | 1.3.1 |
+| [React Hot Loader](http://gaearon.github.io/react-hot-loader/) | See your components live update in the browser without losing state | 3.0.0 beta |
 | [Redux Devtools](https://github.com/gaearon/redux-devtools) | Time travel for Redux state | 3.3.2 |
 | [Redux Logger](https://github.com/gaearon/redux-devtools) | Log Redux state changes in the console | 3.3.2 |
 

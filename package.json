@@ -10,7 +10,7 @@
     "publish": "webpack -p --config webpack-publish.config.js",
     "build": "webpack -p --config webpack-build.config.js",
     "dev-build": "webpack --config webpack-dev-build.config.js",
-    "hot-dev-server": "webpack-dev-server --config webpack-hot-dev-server.config.js --hot --progress --colors --port 3010",
+    "hot-dev-server": "webpack-dev-server --config webpack-hot-dev-server.config.js",
     "dev": "node ./node_modules/concurrently/src/main.js --kill-others --prefix command -l 20 'npm run start-dev' 'npm run hot-dev-server'",
     "test": "NODE_ENV=test mocha --compilers js:babel-core/register client/test/index.js && mocha server/test"
   },
@@ -53,9 +53,9 @@
     "concurrently": "3.1.0",
     "mocha": "3.2.0",
     "nodemon": "1.11.0",
-    "react-hot-loader": "1.3.1",
+    "react-hot-loader": "next",
     "redux-devtools": "3.3.2",
     "redux-logger": "2.8.1",
-    "webpack-dev-server": "1.16.3"
+    "webpack-dev-server": "^2.3.0"
   }
 }
