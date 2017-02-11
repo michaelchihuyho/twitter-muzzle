@@ -45,9 +45,9 @@ My own skeleton for building web applications using React.
 
 `yarn install`
 
-`./bootstrap.sh`
+`yarn run build`
 
-`yarn run dev`
+`yarn run start`
 
 ### View
 
@@ -73,7 +73,7 @@ In order to use [React Hot Loader](http://gaearon.github.io/react-hot-loader/), 
 
 `yarn run hot-dev-server`
 
-(This uses port 3010)
+and then view the app at http://localhost:3000
 
 FYI `yarn run dev` runs both `yarn run start-dev` and `yarn run hot-dev-server`
 
