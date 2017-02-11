@@ -5,6 +5,7 @@ My own skeleton for building web applications using React.
 ## Requirements
 
 [Nodemon](https://github.com/remy/nodemon)
+
 [Node.js](https://nodejs.org/en/)
 
 ## Includes
