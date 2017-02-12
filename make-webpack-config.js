@@ -29,10 +29,14 @@ module.exports = function(options) {
             'react-hot-loader/patch'
           , 'webpack-dev-server/client?http://localhost:3000'
           , 'webpack/hot/only-dev-server'
+          , 'whatwg-fetch'
           , './client/src/index.js'
         ]
       } else if (mode === 'dev' || mode === 'build' || mode === 'publish'){
-        entry = './client/src/index.js'
+        entry = [
+            'whatwg-fetch'
+          , './client/src/index.js'
+        ]
     }
 
     // OUTPUT

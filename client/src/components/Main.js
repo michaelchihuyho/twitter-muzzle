@@ -4,7 +4,9 @@ import {connect} from 'react-redux'
 import TextField from 'material-ui/TextField'
 import RaisedButton from 'material-ui/RaisedButton'
 
-export default class Main extends Component {
+import {twitterActions} from '../actions'
+
+class Main extends Component {
     constructor(props) {
         super(props)
 
@@ -23,6 +25,7 @@ export default class Main extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
+        this.props.dispatch(twitterActions.getTweets(this.state.username))
     }
 
     render() {
@@ -48,3 +51,5 @@ export default class Main extends Component {
         )
     }
 }
+
+export default connect()(Main)

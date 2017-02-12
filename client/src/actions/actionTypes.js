@@ -1,2 +1,3 @@
-export const GET_STUFF_START = 'GET_STUFF_START'
-export const GET_STUFF_END = 'GET_STUFF_END'
+export const GET_TWEETS_START = 'GET_TWEETS_START'
+export const GET_TWEETS_END = 'GET_TWEETS_END'
+export const GET_TWEETS_ERROR = 'GET_TWEETS_ERROR'

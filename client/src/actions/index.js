@@ -1,5 +1,5 @@
-import * as stuffActions from './stuff'
+import * as twitterActions from './twitter'
 
 export {
-    stuffActions
+    twitterActions
 }

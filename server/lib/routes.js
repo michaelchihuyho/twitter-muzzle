@@ -1,4 +1,5 @@
 var Render = require('./module/render/Render')
+  , TwitterProxy = require('./module/twitter/TwitterProxy')
 
 module.exports = function(app) {
     // Render routes
@@ -6,6 +7,7 @@ module.exports = function(app) {
     app.get('/', Render.renderApp)
 
     // API routes
+    app.get('/api/tweets/:username', TwitterProxy.getTweets)
 
     // Misc routes
     app.get('/health', function(req, res) {
