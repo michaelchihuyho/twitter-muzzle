@@ -1,4 +1,4 @@
-import request from 'reqwest'
+import fetch from 'whatwg-fetch'
 import Q from 'q'
 import Cookie from 'js-cookie'
 const baseUrl = '/api'
