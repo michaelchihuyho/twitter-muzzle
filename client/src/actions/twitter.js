@@ -7,11 +7,13 @@ export function getTweets(username) {
     return dispatch => {
         dispatch(getTweetsStart())
 
-        Api.getTweets(username)
+        return Api.getTweets(username)
             .then(function(data){
                 dispatch(getTweetsEnd(data))
+            }, function(error) {
+                var message = error.message || 'Could not retrieve tweets'
+                dispatch(getTweetsError(message))
             })
-            .done()
     }
 }
 

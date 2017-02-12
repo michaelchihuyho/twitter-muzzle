@@ -1,10 +1,9 @@
 import React, {Component, PropTypes} from 'react'
+import {compose} from 'redux'
 import {connect} from 'react-redux'
+import {withRouter} from 'react-router'
 
 import TextField from 'material-ui/TextField'
-import RaisedButton from 'material-ui/RaisedButton'
-
-import {twitterActions} from '../actions'
 
 class Main extends Component {
     constructor(props) {
@@ -25,7 +24,7 @@ class Main extends Component {
 
     handleSubmit(e) {
         e.preventDefault()
-        this.props.dispatch(twitterActions.getTweets(this.state.username))
+        this.props.router.push('/users/' + this.state.username)
     }
 
     render() {
@@ -52,4 +51,7 @@ class Main extends Component {
     }
 }
 
-export default connect()(Main)
+export default compose(
+    withRouter
+  , connect()
+)(Main)

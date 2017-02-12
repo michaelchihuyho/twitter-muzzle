@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux'
 
-import stuff from './stuff'
+import twitter from './twitter'
 
 export default combineReducers({
-    stuff: stuff
+    twitter
 })
