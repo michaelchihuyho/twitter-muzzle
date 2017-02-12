@@ -1,5 +1,5 @@
 import React from 'react'
-import {Router, Route} from 'react-router'
+import {Router, Route, IndexRoute} from 'react-router'
 import {browserHistory} from 'react-router'
 
 // Components
@@ -9,6 +9,7 @@ export function createRoutes() {
     return (
         <Router history={browserHistory}>
             <Route path="/" component={Main}>
+                <Route path="users/:userId"/>
             </Route>
         </Router>
     )

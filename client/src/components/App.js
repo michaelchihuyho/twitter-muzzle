@@ -1,5 +1,5 @@
 // React
-import React from 'react'
+import React, {Component} from 'react'
 
 // React Router
 import {createRoutes} from '../routes'
@@ -8,13 +8,18 @@ import {createRoutes} from '../routes'
 import {Provider} from 'react-redux'
 import store from '../store/store'
 
-export default class Root extends React.Component {
+// Material UI
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+
+export default class Root extends Component {
     render () {
         return (
             <Provider store={store}>
-                <div>
-                    {createRoutes()}
-                </div>
+                <MuiThemeProvider>
+                    <div>
+                        {createRoutes()}
+                    </div>
+                </MuiThemeProvider>
             </Provider>
         )
     }
