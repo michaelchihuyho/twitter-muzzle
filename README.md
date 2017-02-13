@@ -2,14 +2,18 @@
 
 ## Quick start
 
-`yarn install`
+`npm install`
 
-`yarn run build`
+`npm run build`
 
-`yarn run start`
+`npm run start`
 
 ### View
 
 http://localhost:8900
 
 ## Tests
+
+Requires mocha to be globally installed
+
+`npm run test`
