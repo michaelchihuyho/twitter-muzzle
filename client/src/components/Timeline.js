@@ -25,6 +25,13 @@ class Timeline extends Component {
     }
 
     render() {
+        if (this.props.loading) {
+            return (
+                <div>
+                    Loading...
+                </div>
+            )
+        }
         if (this.props.twitter.get('hasError')) {
             return (
                 <div>
@@ -53,6 +60,7 @@ export default connect(
     (state) => {
         return {
             twitter: state.twitter
+          , loading: state.loading
         }
     }
 )(Timeline)
