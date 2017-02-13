@@ -2,13 +2,17 @@ import sentenceTools from 'sentence-tools'
 import changeCase from 'change-case'
 
 // TODO: lots of common cases not properly handled such as:
-// links
 // @mentions
+// apostraphes and commas
+// lots of capitalization special cases
 export default function filter(text) {
     var newArrayOfSentences = []
       , newText
 
-    sentenceTools.tokenize(text).forEach(sentence => {
+    // Remove urls
+    newText = text.replace(/https?:\/\/\S+/, '')
+
+    sentenceTools.tokenize(newText).forEach(sentence => {
         // Ignore sentences less than 3 words long
         if (sentenceTools.countWords(sentence) < 3) {
             return

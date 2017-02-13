@@ -48,7 +48,7 @@ export default class CalmTweet extends Component {
                     </CardText>
                     <CardText
                         expandable={true}
-                        style={{'background-color': 'rgb(186, 91, 91)'}}
+                        style={{'backgroundColor': 'rgb(186, 91, 91)'}}
                     >
                         {this.props.rawText}
                     </CardText>
