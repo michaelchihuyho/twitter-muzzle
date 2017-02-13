@@ -12,7 +12,7 @@
     "dev-build": "webpack --config webpack-dev-build.config.js",
     "hot-dev-server": "webpack-dev-server --config webpack-hot-dev-server.config.js",
     "dev": "node ./node_modules/concurrently/src/main.js --kill-others --prefix command -l 20 'yarn run start-dev' 'yarn run hot-dev-server'",
-    "test": "NODE_ENV=test mocha --compilers js:babel-core/register client/test/index.js && mocha server/test"
+    "test": "NODE_ENV=test mocha --compilers js:babel-core/register client/test && mocha server/test"
   },
   "dependencies": {
     "body-parser": "1.16.0",
