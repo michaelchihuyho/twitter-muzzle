@@ -1,5 +1,4 @@
 import sentenceTools from 'sentence-tools'
-import changeCase from 'change-case'
 
 // TODO: lots of common cases not properly handled such as:
 // @mentions
@@ -12,6 +11,12 @@ export default function filter(text) {
     // Remove urls
     newText = text.replace(/https?:\/\/\S+/, '')
 
+    // Replace exclamation points with a period
+    newText = newText.replace(/\!+/g, '.')
+
+    // Only allow a single question mark
+    newText = newText.replace(/\?+/g, '?')
+
     sentenceTools.tokenize(newText).forEach(sentence => {
         // Ignore sentences less than 3 words long
         if (sentenceTools.countWords(sentence) < 3) {
@@ -19,17 +24,16 @@ export default function filter(text) {
         }
 
         // Add a properly capitalized sentence to the array
-        newArrayOfSentences.push(changeCase.sentenceCase(sentence))
+        sentence = toSentenceCase(sentence).trim()
+
+        newArrayOfSentences.push(toSentenceCase(sentence))
     })
 
-    newText = newArrayOfSentences.join('. ')
-    newText = newText + '.'
-
-    // Replace exclamation points with a period
-    newText = newText.replace(/\!+/g, '.')
-
-    // Only allow a single question mark
-    newText = newText.replace(/\?+/g, '?')
+    newText = newArrayOfSentences.join(' ')
 
     return newText
+}
+
+function toSentenceCase(str) {
+    return str.charAt(0).toUpperCase() + str.substring(1).toLowerCase()
 }
