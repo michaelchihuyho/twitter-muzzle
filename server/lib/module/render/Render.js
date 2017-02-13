@@ -1,7 +1,8 @@
+var clientStats = require('../../../../client/static/stats.json')
+
 var Render = function Render() {}
 
 Render.prototype.renderApp = function renderApp(req, res, next) {
-    var stats = require('../../../../client/static/stats.json')
 
     var csrfToken
       , publicPath
@@ -12,9 +13,8 @@ Render.prototype.renderApp = function renderApp(req, res, next) {
     // res.cookie('reach-csrf-token', csrfToken, {path: '/'})
     // res.cookie('reach-csrf-secret', utils.enc(csrfToken), {path: '/'})
 
-    publicPath = stats.publicPath
-    // TODO: serve the gzipped file!
-    clientAppUrl = publicPath + stats.assets[0].name
+    publicPath = clientStats.publicPath
+    clientAppUrl = publicPath + clientStats.assetsByChunkName.main + '.gzip'
 
     res.render('index.pug', {
         clientAppUrl: clientAppUrl
