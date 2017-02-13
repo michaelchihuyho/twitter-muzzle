@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "body-parser": "1.16.0",
+    "change-case": "^3.0.1",
     "classnames": "2.2.5",
     "clean-webpack-plugin": "0.1.15",
     "compression-webpack-plugin": "0.3.2",
@@ -41,6 +42,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.6.0",
     "redux-thunk": "2.2.0",
+    "sentence-tools": "^3.4.0",
     "stats-webpack-plugin": "0.4.3",
     "style-loader": "0.13.1",
     "twitter": "^1.7.0",
